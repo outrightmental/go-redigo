@@ -6,17 +6,17 @@ Redigo is a [Go](http://golang.org/) client for the [Redis](http://redis.io/) da
 Features
 -------
 
-* A [Print-like](http://godoc.org/github.com/outrightmental/redigo/redis#hdr-Executing_Commands) API with support for all Redis commands.
-* [Pipelining](http://godoc.org/github.com/outrightmental/redigo/redis#hdr-Pipelining), including pipelined transactions.
-* [Publish/Subscribe](http://godoc.org/github.com/outrightmental/redigo/redis#hdr-Publish_and_Subscribe).
-* [Connection pooling](http://godoc.org/github.com/outrightmental/redigo/redis#Pool).
-* [Script helper type](http://godoc.org/github.com/outrightmental/redigo/redis#Script) with optimistic use of EVALSHA.
-* [Helper functions](http://godoc.org/github.com/outrightmental/redigo/redis#hdr-Reply_Helpers) for working with command replies.
+* A [Print-like](http://godoc.org/github.com/outrightmental/go-redigo/redis#hdr-Executing_Commands) API with support for all Redis commands.
+* [Pipelining](http://godoc.org/github.com/outrightmental/go-redigo/redis#hdr-Pipelining), including pipelined transactions.
+* [Publish/Subscribe](http://godoc.org/github.com/outrightmental/go-redigo/redis#hdr-Publish_and_Subscribe).
+* [Connection pooling](http://godoc.org/github.com/outrightmental/go-redigo/redis#Pool).
+* [Script helper type](http://godoc.org/github.com/outrightmental/go-redigo/redis#Script) with optimistic use of EVALSHA.
+* [Helper functions](http://godoc.org/github.com/outrightmental/go-redigo/redis#hdr-Reply_Helpers) for working with command replies.
 
 Documentation
 -------------
 
-- [API Reference](http://godoc.org/github.com/outrightmental/redigo/redis)
+- [API Reference](http://godoc.org/github.com/outrightmental/go-redigo/redis)
 - [FAQ](https://github.com/garyburd/redigo/wiki/FAQ)
 
 Installation
@@ -24,7 +24,7 @@ Installation
 
 Install Redigo using the "go get" command:
 
-    go get github.com/outrightmental/redigo/redis
+    go get github.com/outrightmental/go-redigo/redis
 
 The Go distribution is Redigo's only dependency.
 

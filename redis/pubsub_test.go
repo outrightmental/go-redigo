@@ -23,7 +23,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/internal/redistest"
-	"github.com/outrightmental/redigo/redis"
+	"github.com/outrightmental/go-redigo/redis"
 )
 
 func publish(channel, value interface{}) {

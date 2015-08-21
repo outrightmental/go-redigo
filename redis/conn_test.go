@@ -25,7 +25,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/internal/redistest"
-	"github.com/outrightmental/redigo/redis"
+	"github.com/outrightmental/go-redigo/redis"
 )
 
 var writeTests = []struct {

@@ -166,4 +166,4 @@
 //   if _, err := redis.Scan(reply, &value1, &value2); err != nil {
 //      // handle error
 //  }
-package redis // import "github.com/outrightmental/redigo/redis"
+package redis // import "github.com/outrightmental/go-redigo/redis"

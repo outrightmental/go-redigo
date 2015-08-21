@@ -19,7 +19,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/outrightmental/redigo/redis"
+	"github.com/outrightmental/go-redigo/redis"
 )
 
 type testConn struct {
