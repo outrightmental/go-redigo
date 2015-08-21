@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	"github.com/garyburd/redigo/internal/redistest"
-	"github.com/garyburd/redigo/redis"
-	"github.com/garyburd/redigo/redisx"
+	"github.com/outrightmental/redigo/redis"
+	"github.com/outrightmental/redigo/redisx"
 )
 
 func TestConnMux(t *testing.T) {
