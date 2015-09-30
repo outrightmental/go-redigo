@@ -16,10 +16,15 @@ package redis_test
 
 import (
 	"fmt"
+<<<<<<< HEAD
 	"github.com/outrightmental/go-redigo/redis"
+=======
+>>>>>>> 764a32c188f6ce0bc2565349f0125b3ad4021ea9
 	"math"
 	"reflect"
 	"testing"
+
+	"github.com/garyburd/redigo/redis"
 )
 
 var scanConversionTests = []struct {
@@ -46,6 +51,7 @@ var scanConversionTests = []struct {
 	{[]byte("1"), true},
 	{int64(1), true},
 	{[]byte("t"), true},
+	{"hello", "hello"},
 	{[]byte("hello"), "hello"},
 	{[]byte("world"), []byte("world")},
 	{[]interface{}{[]byte("foo")}, []interface{}{[]byte("foo")}},
@@ -100,7 +106,8 @@ func TestScanConversionError(t *testing.T) {
 func ExampleScan() {
 	c, err := dial()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	defer c.Close()
 
@@ -115,7 +122,8 @@ func ExampleScan() {
 		"GET", "album:*->title",
 		"GET", "album:*->rating"))
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 
 	for len(values) > 0 {
@@ -123,7 +131,8 @@ func ExampleScan() {
 		rating := -1 // initialize to illegal value to detect nil.
 		values, err = redis.Scan(values, &title, &rating)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
+			return
 		}
 		if rating == -1 {
 			fmt.Println(title, "not-rated")
@@ -295,7 +304,8 @@ func TestScanSlice(t *testing.T) {
 func ExampleScanSlice() {
 	c, err := dial()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	defer c.Close()
 
@@ -310,7 +320,8 @@ func ExampleScanSlice() {
 		"GET", "album:*->title",
 		"GET", "album:*->rating"))
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 
 	var albums []struct {
@@ -318,7 +329,8 @@ func ExampleScanSlice() {
 		Rating int
 	}
 	if err := redis.ScanSlice(values, &albums); err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	fmt.Printf("%v\n", albums)
 	// Output:
@@ -332,16 +344,17 @@ var argsTests = []struct {
 }{
 	{"struct ptr",
 		redis.Args{}.AddFlat(&struct {
-			I  int    `redis:"i"`
-			U  uint   `redis:"u"`
-			S  string `redis:"s"`
-			P  []byte `redis:"p"`
+			I  int               `redis:"i"`
+			U  uint              `redis:"u"`
+			S  string            `redis:"s"`
+			P  []byte            `redis:"p"`
+			M  map[string]string `redis:"m"`
 			Bt bool
 			Bf bool
 		}{
-			-1234, 5678, "hello", []byte("world"), true, false,
+			-1234, 5678, "hello", []byte("world"), map[string]string{"hello": "world"}, true, false,
 		}),
-		redis.Args{"i", int(-1234), "u", uint(5678), "s", "hello", "p", []byte("world"), "Bt", true, "Bf", false},
+		redis.Args{"i", int(-1234), "u", uint(5678), "s", "hello", "p", []byte("world"), "m", map[string]string{"hello": "world"}, "Bt", true, "Bf", false},
 	},
 	{"struct",
 		redis.Args{}.AddFlat(struct{ I int }{123}),
@@ -350,6 +363,20 @@ var argsTests = []struct {
 	{"slice",
 		redis.Args{}.Add(1).AddFlat([]string{"a", "b", "c"}).Add(2),
 		redis.Args{1, "a", "b", "c", 2},
+	},
+	{"struct omitempty",
+		redis.Args{}.AddFlat(&struct {
+			I  int               `redis:"i,omitempty"`
+			U  uint              `redis:"u,omitempty"`
+			S  string            `redis:"s,omitempty"`
+			P  []byte            `redis:"p,omitempty"`
+			M  map[string]string `redis:"m,omitempty"`
+			Bt bool              `redis:"Bt,omitempty"`
+			Bf bool              `redis:"Bf,omitempty"`
+		}{
+			0, 0, "", []byte{}, map[string]string{}, true, false,
+		}),
+		redis.Args{"Bt", true},
 	},
 }
 
@@ -364,7 +391,8 @@ func TestArgs(t *testing.T) {
 func ExampleArgs() {
 	c, err := dial()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	defer c.Close()
 
@@ -379,7 +407,8 @@ func ExampleArgs() {
 	p1.Body = "Hello"
 
 	if _, err := c.Do("HMSET", redis.Args{}.Add("id1").AddFlat(&p1)...); err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 
 	m := map[string]string{
@@ -389,18 +418,21 @@ func ExampleArgs() {
 	}
 
 	if _, err := c.Do("HMSET", redis.Args{}.Add("id2").AddFlat(m)...); err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 
 	for _, id := range []string{"id1", "id2"} {
 
 		v, err := redis.Values(c.Do("HGETALL", id))
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
+			return
 		}
 
 		if err := redis.ScanStruct(v, &p2); err != nil {
-			panic(err)
+			fmt.Println(err)
+			return
 		}
 
 		fmt.Printf("%+v\n", p2)
