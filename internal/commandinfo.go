@@ -12,7 +12,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-package internal // import "github.com/outrightmenta/go-redigo/internal"
+package internal // import "github.com/outrightmental/go-redigo/internal"
 
 import (
 	"strings"

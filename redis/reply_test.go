@@ -19,7 +19,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/outrightmenta/go-redigo/internal/redistest"
+	"github.com/outrightmental/go-redigo/internal/redistest"
 	"github.com/outrightmental/go-redigo/redis"
 )
 

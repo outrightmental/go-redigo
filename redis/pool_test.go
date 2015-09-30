@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/outrightmenta/go-redigo/internal/redistest"
+	"github.com/outrightmental/go-redigo/internal/redistest"
 	"github.com/outrightmental/go-redigo/redis"
 )
 

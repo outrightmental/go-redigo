@@ -25,7 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/outrightmenta/go-redigo/internal"
+	"github.com/outrightmental/go-redigo/internal"
 )
 
 var nowFunc = time.Now // for testing
