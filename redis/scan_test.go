@@ -16,15 +16,11 @@ package redis_test
 
 import (
 	"fmt"
-<<<<<<< HEAD
-	"github.com/outrightmental/go-redigo/redis"
-=======
->>>>>>> 764a32c188f6ce0bc2565349f0125b3ad4021ea9
 	"math"
 	"reflect"
 	"testing"
 
-	"github.com/garyburd/redigo/redis"
+	"github.com/outrightmental/go-redigo/redis"
 )
 
 var scanConversionTests = []struct {

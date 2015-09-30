@@ -20,12 +20,8 @@ import (
 	"testing"
 	"time"
 
-<<<<<<< HEAD
-	"github.com/garyburd/redigo/internal/redistest"
+	"github.com/outrightmenta/go-redigo/internal/redistest"
 	"github.com/outrightmental/go-redigo/redis"
-=======
-	"github.com/garyburd/redigo/redis"
->>>>>>> 764a32c188f6ce0bc2565349f0125b3ad4021ea9
 )
 
 func ExampleScript(c redis.Conn, reply interface{}, err error) {
